@@ -6,7 +6,7 @@ import argparse
 
 
 def url_parser():
-    parsed_link = urlparse(f'{PARSER_INPUT}')
+    parsed_link = urlparse(PARSER_INPUT)
     link = parsed_link.netloc + parsed_link.path
     return link
 
@@ -27,7 +27,7 @@ def count_clicks():
 
 
 def url_shortener():
-    long_url = {'long_url': f'{PARSER_INPUT}'}
+    long_url = {'long_url': PARSER_INPUT}
     response = requests.post(f'{ADDRESS_BITLY}bitlinks', headers=HEADERS_TOKEN, json=long_url)
     response.raise_for_status()
     bitlink = response.json()['link']
