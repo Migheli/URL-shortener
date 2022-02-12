@@ -49,8 +49,6 @@ if __name__ == '__main__':
     PARSER_INPUT = namespace.url
 
     try:
-
-
         if is_bitlink():
             result = count_clicks()
         else:
