@@ -11,19 +11,19 @@
 ### Как установить
 
 Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
-pip install -r requirements.txt
+pip install -r requirements.txt.
 Ключ для доступа к API bitlink можно получить, следуя этой инструкции:
-1. Регистрируемся в сервисе битли: https://bitly.com/
-2. В профиле переходим в Settings - Developers Settings - API - Access Token: https://app.bitly.com/settings/api/
+1. Регистрируемся в сервисе битли: https://bitly.com/.
+2. В профиле переходим в Settings - Developers Settings - API - Access Token: https://app.bitly.com/settings/api/.
 4. Вводим корректный пароль от битли и жмем Generate Token. Токен готов!
-5. Читаем документацию битли: https://dev.bitly.com/
+5. Читаем документацию битли: https://dev.bitly.com/.
 Токен представляет собой набор из 40 различных символов (цифры и буквы латинского алфавита). 
-##### ВАЖНО! Никогда не публикуйте и не разглашайте Ваш токен, с помощью токена возможен доступ к Вашим данным на битли. Токен должен быть записан в переменную окружения BITLY_TOKEN в файле dot.env: BITLY_TOKEN='your_access_token'
+##### ВАЖНО! Никогда не публикуйте и не разглашайте Ваш токен, с помощью токена возможен доступ к Вашим данным на битли. Токен должен быть записан в переменную окружения BITLY_TOKEN в файле dot.env: BITLY_TOKEN='your_access_token'.
 
 Файл dot.env должен быть расположен в одной директории с main.py.
 ##### ВАЖНО! При использовании PyCharm обязательно необходимо предварительно разрешить среде разработки работу с переменными окружения.
-Плагин для PyCharm и инструкция по его установке здесь: https://plugins.jetbrains.com/plugin/7861-envfile 
-Также в PyCharm необходимо в меню Project главного окна сделать щелчок ПКМ по папке проекта и выбрать следующие пункты - Mark Directory as - Mark as sources route
+Плагин для PyCharm и инструкция по его установке здесь: https://plugins.jetbrains.com/plugin/7861-envfile.
+Также в PyCharm необходимо в меню Project главного окна сделать щелчок ПКМ по папке проекта и выбрать следующие пункты - Mark Directory as - Mark as sources route:
 
 <img src="https://resources.jetbrains.com/help/img/idea/2021.3/py_mark_directory_project_tool_window.png" width="300" height="400" />
 
