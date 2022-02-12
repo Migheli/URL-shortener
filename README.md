@@ -11,9 +11,9 @@
 ### Как установить
 
 Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
-```
+`
 pip install -r requirements.txt
-```
+`
 Ключ для доступа к API bitlink можно получить, следуя этой инструкции:
 1. Регистрируемся в сервисе битли: https://bitly.com/.
 2. В профиле переходим в Settings - Developers Settings - API - Access Token: https://app.bitly.com/settings/api/.
