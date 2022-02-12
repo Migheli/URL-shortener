@@ -5,19 +5,6 @@ from dotenv import load_dotenv
 import argparse
 
 
-
-
-def create_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('url')
-
-    return parser
-
-
-namespace = create_parser().parse_args()
-PARSER_INPUT = namespace.url
-
-
 def url_parser():
     parsed_link = urlparse(f'{PARSER_INPUT}')
     link = parsed_link.netloc + parsed_link.path
@@ -55,6 +42,11 @@ if __name__ == '__main__':
     BITLY_TOKEN = os.getenv('BITLY_TOKEN')
     HEADERS_TOKEN = {'Authorization': f'Bearer {BITLY_TOKEN}'}
     ADDRESS_BITLY = 'https://api-ssl.bitly.com/v4/'
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('url')
+    namespace = parser.parse_args()
+    PARSER_INPUT = namespace.url
 
     try:
 
