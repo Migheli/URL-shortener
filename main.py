@@ -5,54 +5,58 @@ from dotenv import load_dotenv
 import argparse
 
 
-def url_parser():
-    parsed_link = urlparse(PARSER_INPUT)
+dotenv_path = 'dot.env'
+load_dotenv(dotenv_path)
+BITLY_TOKEN = os.getenv('BITLY_TOKEN')
+
+
+def url_parser(parser_input):
+    parsed_link = urlparse(parser_input)
     link = parsed_link.netloc + parsed_link.path
     return link
 
 
-def is_bitlink():
-    link = url_parser()
-    response = requests.get(f'{ADDRESS_BITLY}bitlinks/{link}', headers=HEADERS_TOKEN)
+def is_bitlink(address_bitly, headers_token, parser_input):
+    link = url_parser(parser_input)
+    response = requests.get(f'{address_bitly}bitlinks/{link}', headers=headers_token)
     return response.ok
 
 
-def count_clicks():
-    link = url_parser()
-    response = requests.get(f'{ADDRESS_BITLY}bitlinks/{link}/clicks/summary', headers=HEADERS_TOKEN)
+def count_clicks(address_bitly, headers_token, parser_input):
+    link = url_parser(parser_input)
+    response = requests.get(f'{address_bitly}bitlinks/{link}/clicks/summary', headers=headers_token)
     response.raise_for_status()
     total_clicks = response.json()['total_clicks']
     result = f'Количество кликов: {total_clicks}'
     return result
 
 
-def url_shortener():
-    long_url = {'long_url': PARSER_INPUT}
-    response = requests.post(f'{ADDRESS_BITLY}bitlinks', headers=HEADERS_TOKEN, json=long_url)
+def url_shortener(address_bitly, headers_token, parser_input):
+    long_url = {'long_url': parser_input}
+    response = requests.post(f'{address_bitly}bitlinks', headers=headers_token, json=long_url)
     response.raise_for_status()
     bitlink = response.json()['link']
     result = f'Ваш битлинк готов: {bitlink}'
     return result
 
 
-if __name__ == '__main__':
-    dotenv_path = 'dot.env'
-    load_dotenv(dotenv_path)
-
-    BITLY_TOKEN = os.getenv('BITLY_TOKEN')
-    HEADERS_TOKEN = {'Authorization': f'Bearer {BITLY_TOKEN}'}
-    ADDRESS_BITLY = 'https://api-ssl.bitly.com/v4/'
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('url')
-    namespace = parser.parse_args()
-    PARSER_INPUT = namespace.url
-
+def main():
     try:
-        if is_bitlink():
-            result = count_clicks()
+        address = 'https://api-ssl.bitly.com/v4/'
+        headers = {'Authorization': f'Bearer {BITLY_TOKEN}'}
+        parser = argparse.ArgumentParser()
+        parser.add_argument('url')
+        namespace = parser.parse_args()
+        parser_input = namespace.url
+
+        if is_bitlink(address, headers, parser_input):
+            result = count_clicks(address, headers, parser_input)
         else:
-            result = url_shortener()
+            result = url_shortener(address, headers, parser_input)
         print(result)
     except requests.exceptions.HTTPError as error:
         exit(f'Случилась ошибка. Код ошибки: {error}')
+
+
+if __name__ == '__main__':
+    main()
