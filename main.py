@@ -5,11 +5,6 @@ from dotenv import load_dotenv
 import argparse
 
 
-dotenv_path = 'dot.env'
-load_dotenv(dotenv_path)
-BITLY_TOKEN = os.getenv('BITLY_TOKEN')
-
-
 def url_parser(parser_input):
     parsed_link = urlparse(parser_input)
     link = parsed_link.netloc + parsed_link.path
@@ -41,14 +36,17 @@ def url_shortener(address_bitly, headers_token, parser_input):
 
 
 def main():
-    try:
-        address = 'https://api-ssl.bitly.com/v4/'
-        headers = {'Authorization': f'Bearer {BITLY_TOKEN}'}
-        parser = argparse.ArgumentParser()
-        parser.add_argument('url')
-        namespace = parser.parse_args()
-        parser_input = namespace.url
+    dotenv_path = 'dot.env'
+    load_dotenv(dotenv_path)
+    bitly_token = os.getenv('BITLY_TOKEN')
+    address = 'https://api-ssl.bitly.com/v4/'
+    headers = {'Authorization': f'Bearer {bitly_token}'}
+    parser = argparse.ArgumentParser()
+    parser.add_argument('url')
+    namespace = parser.parse_args()
+    parser_input = namespace.url
 
+    try:
         if is_bitlink(address, headers, parser_input):
             result = count_clicks(address, headers, parser_input)
         else:
