@@ -11,9 +11,9 @@
 ### Как установить
 
 Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
-`
+```
 pip install -r requirements.txt
-`
+```
 Ключ для доступа к API bitlink можно получить, следуя этой инструкции:
 1. Регистрируемся в сервисе битли: https://bitly.com/.
 2. В профиле переходим в Settings - Developers Settings - API - Access Token: https://app.bitly.com/settings/api/.
@@ -32,7 +32,20 @@ BITLY_TOKEN='your_access_token'
 
 <img src="https://resources.jetbrains.com/help/img/idea/2021.3/py_mark_directory_project_tool_window.png" width="300" height="400" />
 
-Результат выполнения программы должен выглядеть следующим образом:
-![](https://dvmn.org/media/Screenshot_from_2018-10-31_15-00-02.png)
+Для получения наберите в терминале:
+```
+main.py 'your link or a bitlink'
+```
+Пример результата выполнения программы для ссылки http://dvmn.org:
+```
+dvmn@dvmn-computer:~/Downloads/bitly$ main.py http://dvmn.org
+Ваш битлинк готов: https://bit.ly/3HO8KTG
+```
+Пример результата выполнения программы для битлинка https://bit.ly/3HO8KTG:
+```
+dvmn@dvmn-computer:~/Downloads/bitly$ main.py https://bit.ly/3HO8KTG
+Количество кликов: 1
+```
+
 ### Цель проекта
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org).
